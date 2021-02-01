@@ -1,9 +1,5 @@
 // Have to destructure the named export from lib
-import { studentData } from "./lib";
-
-function getLastName(name) {
-  return name.split(" ")[1];
-}
+import { getLastName, studentData } from "./lib";
 
 const lowScores = studentData
   .filter((student) => student.score < 70)
