@@ -1,5 +1,5 @@
 // Have to destructure the named export from lib
-import { getLastName, studentData } from "./lib";
+import { assignLetterGrade, getLastName, studentData } from "./lib";
 
 const lowScores = studentData
   .filter(({ score }) => score < 70)
@@ -8,4 +8,10 @@ const lowScores = studentData
     id,
   }));
 
-console.log(lowScores);
+const scoresWithLetterGrades = studentData.map((student) => {
+  const ret = { grade: assignLetterGrade(student.score), ...student };
+
+  return ret;
+});
+
+console.log(scoresWithLetterGrades);
