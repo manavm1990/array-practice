@@ -1,5 +1,7 @@
 // Have to destructure the named export from lib
-import { assignLetterGrade, getLastName, studentData } from "./lib";
+import { assignLetterGrade, curveScore, getLastName, studentData } from "./lib";
+
+// TODO: Get a list of just the 'name' field from the senators if they were born since 1960
 
 const lowScores = studentData
   .filter(({ score }) => score < 70)
@@ -8,10 +10,14 @@ const lowScores = studentData
     id,
   }));
 
-const scoresWithLetterGrades = studentData.map((student) => {
-  const ret = { grade: assignLetterGrade(student.score), ...student };
+const scoresWithLetterGrades = studentData.map((student) => ({
+  grade: assignLetterGrade(student.score),
+  ...student,
+}));
 
-  return ret;
-});
+const curvedScores = studentData.map((student) => ({
+  curvedScore: curveScore(student.score, 10),
+  ...student,
+}));
 
-console.log(scoresWithLetterGrades);
+// console.log(curvedScores);
